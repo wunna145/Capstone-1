@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div id="{{search}}" class="home-hero"> </div>
+  <div id="loading-spinner" class="hidden">
+    <i class="fas fa-spinner fa-spin"></i> Loading...
+  </div>  
+  <div id="herolist"> </div>
+  <div class="skip-heroes">
+    <button id="prev" class="btn btn-success">---Prev---   </button>
+    <button id="next" class="btn btn-success">---Next---</button>
+  </div>
+  <script type="module" src="/static/all-heroes.js"></script>
+  <script type="module" src="/static/key.js"></script>
+{% endblock %}

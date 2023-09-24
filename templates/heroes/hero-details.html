@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id="{{id}}" class="profile-container"></div>
+<div class="stats-container"></div>
+<div class="comments-container">
+  <ul class="list-group">
+    <h3 class="txt"> Comment section! </h3>
+    {% for comment in comments %}
+
+        <li>
+          <p>
+            <a href="/heroes/{{id}}">@{{comment.user.username}}</a>: {{comment.text}}
+            {% if comment.user.username == g.user.username %}
+              <a href="/heroes/{{id}}/comment/delete/{{comment.id}}" class="deleteBtn"> Delete </a>
+            {% endif %}
+          </p>
+        </li>
+
+      {% endfor %}
+  </ul>
+</div>
+ 
+  <a href='/heroes/{{id}}/comment' style="margin: 20px; margin-left: 50px;" class="btn btn-success btn-block">Add a Comment!</a>
+
+<script type="module" src="/static/hero-details.js"></script>
+<script type="module" src="/static/key.js"></script>
+
+{% endblock %}
