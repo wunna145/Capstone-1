@@ -25,6 +25,9 @@ async function makeProfile(){
     let img = document.createElement("img");
     img.src = heroInfo.image.url;
     img.id = "profile-avatar";
+    img.addEventListener("error", function(){
+        this.src = "/static/logo.png";
+    });
 
     let name = document.createElement("h1");
     name.innerText = heroInfo.name;

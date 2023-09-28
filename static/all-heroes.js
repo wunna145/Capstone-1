@@ -69,6 +69,9 @@ function createDivForHero(id, hero, image) {
     heroImage.className = "hero-image";
     heroImage.id = id;
     heroImage.src = image;
+    heroImage.addEventListener("error", function(){
+        this.src = "/static/logo.png";
+    });
 
     const heroName = document.createElement("p");
     heroName.className = "hero-name";

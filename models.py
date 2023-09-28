@@ -17,19 +17,19 @@ class User(db.Model):
     )
 
     email = db.Column(
-        db.Text,
+        db.String,
         nullable=False,
         unique=True,
     )
 
     username = db.Column(
-        db.Text,
+        db.String,
         nullable=False,
         unique=True,
     )
 
     password = db.Column(
-        db.Text,
+        db.String,
         nullable=False,
     )
 
@@ -69,13 +69,19 @@ class Comment(db.Model):
     )
 
     text = db.Column(
-        db.String(140),
+        db.Text,
         nullable=False,
     )
 
     heroId = db.Column(
         db.Integer,
         nullable=False
+    )
+
+    timestamp = db.Column(
+        db.DateTime,
+        nullable=False,
+        default=datetime.utcnow(),
     )
 
     user_id = db.Column(

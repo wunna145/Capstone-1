@@ -230,6 +230,7 @@ nav form.navbar-form {
     border-radius: 100%;
     object-fit: cover;
     border: 2px solid #6da5c0;
+    background-color: white;
 }
 
 .profile{
@@ -323,6 +324,11 @@ nav form.navbar-form {
 
 .comments-container h3{
     text-decoration: underline;
+}
+
+.datetime {
+  font-size: small;
+  color:#4f7b91;
 }
 
   

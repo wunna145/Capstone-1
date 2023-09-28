@@ -12,6 +12,7 @@
         <li>
           <p>
             <a href="/heroes/{{id}}">@{{comment.user.username}}</a>: {{comment.text}}
+            <span class="datetime">|{{ comment.timestamp.strftime('%d %B %Y') }}|</span>
             {% if comment.user.username == g.user.username %}
               <a href="/heroes/{{id}}/comment/delete/{{comment.id}}" class="deleteBtn"> Delete </a>
             {% endif %}
