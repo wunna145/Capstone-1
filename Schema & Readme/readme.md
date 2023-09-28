@@ -4,3 +4,6 @@ Welcome to Meta City developed by Zaw using superheroapi.
     - On macOS, execute ``` open -na "Google Chrome" --args --disable-web-security --user-data-dir="/tmp/chrome_dev_session" ``` in terminal. 
     - On WindowOS, execute ``` chrome.exe --disable-web-security --user-data-dir="C:/ChromeDevSession" ``` in command prompt. 
     - On LinuxOS, ``` google-chrome --disable-web-security --user-data-dir="/tmp/chrome_dev_session" ``` in terminal.
+
+2. API Key - ``` 2026970890970824 ```.
+
