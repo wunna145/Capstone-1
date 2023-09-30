@@ -33,6 +33,8 @@ class User(db.Model):
         nullable=False,
     )
 
+    comments = db.relationship('Comment')
+
     @classmethod
     def signup(cls, username, email, password):
 

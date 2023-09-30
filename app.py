@@ -54,7 +54,7 @@ def hero_detail(hero_id):
     comments = (Comment
                 .query
                 .filter(Comment.heroId == hero_id)
-                .order_by(Comment.timestamp.desc())
+                .order_by(Comment.id.desc())
                 .limit(100)
                 .all())
     return render_template('/heroes/hero-details.html', id=hero_id, comments=comments)
