@@ -9,5 +9,6 @@ Welcome to Meta City developed by Zaw using superheroapi.
     - On WindowOS, execute ``` chrome.exe --disable-web-security --user-data-dir="C:/ChromeDevSession" ``` in command prompt. 
     - On LinuxOS, ``` google-chrome --disable-web-security --user-data-dir="/tmp/chrome_dev_session" ``` in terminal.
 
+4. Here is the link to try my site: ``` https://metacity.onrender.com ```. IF you find there is no data in all heroes, please try out step-3.
 
 
