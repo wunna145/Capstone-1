@@ -6,7 +6,6 @@ from flask_sqlalchemy import SQLAlchemy
 bcrypt = Bcrypt()
 db = SQLAlchemy()
 
-
 class User(db.Model):
 
     __tablename__ = 'users'
