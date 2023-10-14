@@ -5,6 +5,7 @@ from models import User, Comment, db, connect_db
 from forms import UserAddForm, LoginForm, CommentForm
 from sqlalchemy import inspect
 from sqlalchemy.exc import IntegrityError
+from flask_cors import CORS
 
 app = Flask(__name__)
 
@@ -14,6 +15,8 @@ app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = True
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', "it's a secret")
 app.config['SQLALCHEMY_DATABASE_URI'] = (os.environ.get('DATABASE_URL', 'postgresql:///metacity'))
 toolbar = DebugToolbarExtension(app)
+
+CORS(app)
 
 CURR_USER_KEY = "curr_user"
 

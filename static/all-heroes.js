@@ -16,7 +16,7 @@ const BASE_URL = "https://superheroapi.com/api/" + key + "/";
 
 async function getHero(id){
     try{
-        let response = await axios.get(BASE_URL + id + '/image');
+        let response = await axios.get(BASE_URL + id + '/image').header('Access-Control-Allow-Origin: *');
         return response.data;
     }catch(error){
         console.error("Error fetching hero data:", error);
