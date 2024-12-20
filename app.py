@@ -16,7 +16,13 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', "it's a secret")
 app.config['SQLALCHEMY_DATABASE_URI'] = (os.environ.get('DATABASE_URL', 'postgresql:///metacity'))
 toolbar = DebugToolbarExtension(app)
 
-CORS(app)
+CORS(app, resources={
+    r"/*": {
+        "origins": ["http://localhost:5000", "https://metacity.onrender.com"],
+        "methods": ["GET", "POST", "PUT", "DELETE"],
+        "allow_headers": ["Content-Type", "Authorization"],
+    }
+})
 
 CURR_USER_KEY = "curr_user"
 
@@ -25,6 +31,7 @@ with app.app_context():
      inspector = inspect(db.engine)
      if not inspector.has_table('users'):
         db.create_all()
+
 
 @app.before_request
 def add_user_to_g():
@@ -146,3 +153,6 @@ def deleteCmt(hero_id, cmt_id):
     db.session.commit()
 
     return redirect(f'/heroes/{hero_id}')
+
+if __name__ == "__main__":
+    app.run(debug=True)
