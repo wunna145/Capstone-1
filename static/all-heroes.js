@@ -12,7 +12,8 @@ let searchLimit = 10;
 let totalLimit = 0;
 let reachEnd = 0;
 
-const BASE_URL = "https://superheroapi.com/api/" + key + "/";
+const PROXY_URL = "https://cors-anywhere.herokuapp.com/";
+const BASE_URL = PROXY_URL + "https://superheroapi.com/api/" + key + "/";
 
 async function getHero(id){
     try{

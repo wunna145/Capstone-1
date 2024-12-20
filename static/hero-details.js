@@ -1,6 +1,7 @@
 import { key } from "./key.js";
 
-const BASE_URL = "https://superheroapi.com/api/" + key + "/";
+const PROXY_URL = "https://cors-anywhere.herokuapp.com/";
+const BASE_URL = PROXY_URL + "https://superheroapi.com/api/" + key + "/";
 const hero = document.getElementsByClassName("profile-container");
 const id = hero[0].id;
 
