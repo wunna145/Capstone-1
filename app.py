@@ -18,7 +18,7 @@ toolbar = DebugToolbarExtension(app)
 
 CORS(app, resources={
     r"/*": {
-        "origins": ["http://localhost:5000", "https://metacity.onrender.com"],
+        "origins": "*",
         "methods": ["GET", "POST", "PUT", "DELETE"],
         "allow_headers": ["Content-Type", "Authorization"],
     }

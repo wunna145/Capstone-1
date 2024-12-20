@@ -4,8 +4,8 @@ const heroesContainer = document.getElementById("herolist");
 const next = document.querySelector("#next");
 const prev = document.querySelector("#prev");
 const isSearch = document.querySelector(".home-hero");
-let nowShowing = isSearch.id;
 
+let nowShowing = isSearch.id;
 let counter = 1;
 let searchCount = 0;
 let searchLimit = 10;
