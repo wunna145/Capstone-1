@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meta City - Under Construction</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            text-align: center;
+        }
+
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/static/images/construction.jpeg') no-repeat center center/cover;
+            filter: blur(4px);
+            z-index: -1;
+        }
+
+        .message {
+            position: relative;
+            font-family: 'Bangers', Arial, sans-serif;
+            font-size: 7rem;
+            text-align: center;
+            background: rgba(255, 0, 0, 0.8); /* Red background with opacity */
+            color: white;
+            padding: 20px 40px;
+            border: 3px solid white;
+            border-radius: 10px;
+            animation: blink 3s infinite;
+        }
+
+        .apology {
+            position: relative;
+            font-family: Arial, sans-serif;
+            font-size: 1.2rem;
+            color: white;
+            margin-top: 20px;
+            max-width: 600px;
+            line-height: 1.5;
+            text-shadow: 2px 2px 5px red;
+        }
+
+        @keyframes blink {
+            0%, 50%, 100% {
+                opacity: 1;
+            }
+            25%, 75% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="message">Meta City Under Maintenance !!!</div>
+    <p class="apology">I apologize for the inconvenience. The server is currently experiencing an issue, and I am working diligently to resolve it as quickly as possible. Thank you for your patience and understanding.</p>
+</body>
+</html>
