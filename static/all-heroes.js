@@ -13,7 +13,7 @@ let totalLimit = 0;
 let heroThumbnail = "";
 
 const auth = generateAuth();
-const BASE_URL = "http://gateway.marvel.com/v1/public/characters?";
+const BASE_URL = "https://gateway.marvel.com/v1/public/characters?";
 
 async function show(limit, offset){
     showLoadingSpinner();

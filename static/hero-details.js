@@ -1,7 +1,7 @@
 import { generateAuth } from "./auth.js";
 
 const auth = generateAuth();
-const BASE_URL = "http://gateway.marvel.com/v1/public/characters?id=";
+const BASE_URL = "https://gateway.marvel.com/v1/public/characters?id=";
 const hero = document.getElementsByClassName("profile-container");
 const id = hero[0].id;
 
