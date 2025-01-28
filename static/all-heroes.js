@@ -1,4 +1,4 @@
-import { key } from "./key.js";
+import { generateAuth } from "./auth.js";
 
 const heroesContainer = document.getElementById("herolist");
 const next = document.querySelector("#next");
@@ -6,57 +6,47 @@ const prev = document.querySelector("#prev");
 const isSearch = document.querySelector(".home-hero");
 
 let nowShowing = isSearch.id;
-let counter = 1;
+let limit = 10;
+let offset = 0;
 let searchCount = 0;
-let searchLimit = 10;
 let totalLimit = 0;
-let reachEnd = 0;
+let heroThumbnail = "";
 
-const PROXY_URL = "https://cors-anywhere.herokuapp.com/";
-const BASE_URL = PROXY_URL + "https://superheroapi.com/api/" + key + "/";
+const auth = generateAuth();
+const BASE_URL = "http://gateway.marvel.com/v1/public/characters?";
 
-async function getHero(id){
-    try{
-        let response = await axios.get(BASE_URL + id + '/image');
-        return response.data;
-    }catch(error){
-        console.error("Error fetching hero data:", error);
-        return null;
-    }
-}
-
-async function searchHero(name){
-    try{
-        let response = await axios.get(BASE_URL + 'search/' + name);
-        return response.data;
-    }catch(error){
-        console.error("Error fetching hero data:", error);
-        return null;
-    }
-}
-
-async function show(s){
+async function show(limit, offset){
     showLoadingSpinner();
     if(nowShowing === ""){
-        for (let i = s; i < (s+10); i++) {
-            let hero = await getHero(i);
-            if (hero) {
-              createDivForHero(hero.id, hero.name, hero.url);
-            }
-        }
+      let limitOffset = "limit=" + limit + "&offset=" + offset + "&";
+      let heroesResult = await axios.get(BASE_URL + limitOffset + auth);
+      let heroesArray = heroesResult.data.data.results;
+      for(let i=0; i < limit; i++){
+        heroThumbnail = heroesArray[i].thumbnail.path + "/portrait_incredible.jpg";
+        createDivForHero(heroesArray[i].id, heroesArray[i].name, heroThumbnail);
+      }
     }else{
         heroesContainer.innerHTML = "";
         let hero = await searchHero(nowShowing);
-        totalLimit = hero.results.length;
-        console.log("before while ", searchCount, searchLimit, hero.response, totalLimit, reachEnd);
-        while(hero.response === "success" && hero.results[searchCount] && searchCount < searchLimit) {
-            console.log("in while ", searchCount, searchLimit, hero.response);
-            createDivForHero(hero.results[searchCount].id, hero.results[searchCount].name, hero.results[searchCount].image.url);
+        console.log(hero);
+        totalLimit = hero.length;
+        while(hero[searchCount] && searchCount < totalLimit) {
+            heroThumbnail = hero[searchCount].thumbnail.path + "/portrait_incredible.jpg";
+            createDivForHero(hero[searchCount].id, hero[searchCount].name, heroThumbnail);
             searchCount++;
         }
     }
     hideLoadingSpinner();
+}
 
+async function searchHero(name){
+    try{
+        let response = await axios.get(BASE_URL + "name=" + name + "&" + auth);
+        return response.data.data.results;
+    }catch(error){
+        console.error("Error fetching hero data:", error);
+        return null;
+    }
 }
 
 function createDivForHero(id, hero, image) {
@@ -112,53 +102,40 @@ function hideLoadingSpinner() {
 prev.addEventListener("click", function(){
     heroesContainer.innerHTML = "";
     if(nowShowing === ""){
-        if(counter === 1){
-            show(counter);
+        if(offset === 0){
+            show(limit, offset);
+        }else if(offset === 1560){
+            limit = 10;
+            offset = offset - 10;
+            show(limit, offset);
         }else{
-            counter = counter - 10;
-            show(counter);
+            offset = offset - 10;
+            show(limit, offset);
         }
     }else{
-        nowShowing = nowShowing;
-
-        if(searchCount%10 != 0){
-            searchCount = searchCount - 10 - (searchCount%10);
-            searchLimit = searchLimit - 10;
-        }else if(reachEnd != 0 && searchLimit > 10){
-            searchCount = searchCount - (10 + reachEnd);
-            searchLimit = searchLimit - 10;
-        }else if(searchLimit > 10){
-            searchLimit = searchLimit - 10;
-            searchCount = searchCount - 20;
-        }else{
-            searchLimit = 10;
-            searchCount = 0;
-        }
-        reachEnd = 0;
-        show(counter);
+      window.location.href = `/heroes`;
     }
 })
 
 next.addEventListener("click", function(){
     heroesContainer.innerHTML = "";
     if(nowShowing === ""){
-        if(counter === 731){
-            show(counter);
+        if(offset > 1564){
+            show(limit, offset);
+        }else if(offset < 1550){
+          offset = offset + 10;
+          show(limit, offset);
+        }else if(offset === 1550){
+            offset = offset + 10;
+            limit = 4;
+            show(limit, offset);
         }else{
-            counter = counter + 10;
-            show(counter);
+          show(limit, offset);
         }
     }else{
-        nowShowing = nowShowing;
-        if(totalLimit > searchLimit){
-            searchLimit = searchLimit + 10;
-        }else{
-            searchCount = searchLimit - 10;
-            reachEnd = (totalLimit)%10;
-        }
-        show(counter);
+      window.location.href = `/heroes`;
     }
 })
 
-show(counter);
+show(limit, offset);
 

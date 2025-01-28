@@ -170,6 +170,7 @@ nav form.navbar-form {
   
 
 /* ===================================== Welcome page */
+
 .welcome-text{
     height: 100vh;
     display: flex;
@@ -187,7 +188,8 @@ nav form.navbar-form {
 }
 
 .welcome-text h1{
-    font-size: 72px;
+    font-family: 'Bangers', Arial, sans-serif;
+    font-size: 84px;
 }
 
 .welcome-text h3{
@@ -229,7 +231,7 @@ nav form.navbar-form {
     height: 250px;
     border-radius: 100%;
     object-fit: cover;
-    border: 2px solid #6da5c0;
+    border: 2px solid white;
     background-color: white;
 }
 
@@ -243,9 +245,17 @@ nav form.navbar-form {
 }
 
 .profile h1{
-    color : #6da5c0;
+    color : white;
     font-size: 48px;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Bangers', Arial, sans-serif;
+}
+
+.herocomic{
+  color: rgb(255, 255, 255);
+}
+
+.herocomic:hover{
+  color: rgb(255, 255, 118);
 }
 
 .txt{
@@ -271,8 +281,14 @@ nav form.navbar-form {
     border: 2px solid #6da5c0;
 }
 
-.stats h1{
-    text-decoration: underline;
+.stats b{
+  font-family: 'Bangers', Arial, sans-serif;
+  font-size: 38px;
+  color: white;
+}
+
+.stats a{
+  color: #6da5c0;
 }
 
 .join-message {
@@ -323,7 +339,8 @@ nav form.navbar-form {
 }
 
 .comments-container h3{
-    text-decoration: underline;
+  font-family: 'Bangers', Arial, sans-serif;
+  color: white;
 }
 
 .datetime {

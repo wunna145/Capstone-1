@@ -1,0 +1,52 @@
+function solvePyramid(pyramid, target) {
+    function dfs(row, col, currentProduct, path) {
+      // Base case: If we reach the bottom of the pyramid
+      if (row === pyramid.length) {
+        return currentProduct === target ? path : null;
+      }
+  
+      // Ensure we're within bounds
+      if (col < 0 || col >= pyramid[row].length) {
+        return null;
+      }
+  
+      // Update the current product
+      currentProduct *= pyramid[row][col];
+  
+      // If currentProduct exceeds target, stop exploring this path
+      if (currentProduct > target) {
+        return null;
+      }
+  
+      // Try going left (L) or right (R) in the next row
+      const leftPath = dfs(row + 1, col, currentProduct, path + "L");
+      if (leftPath) {
+        return leftPath;
+      }
+  
+      const rightPath = dfs(row + 1, col + 1, currentProduct, path + "R");
+      if (rightPath) {
+        return rightPath;
+      }
+  
+      // No valid path found
+      return null;
+    }
+  
+    // Start DFS from the top of the pyramid
+    return dfs(0, 0, 1, "");
+  }
+  
+  // Example usage:
+  const pyramid = [
+    [2],
+    [4, 3],
+    [3, 2, 6],
+    [2, 9, 5, 2],
+    [10, 5, 2, 15, 5]
+  ];
+  const target = 720;
+  
+  const result = solvePyramid(pyramid, target);
+  console.log(`Path to target ${target}: ${result}`);
+  

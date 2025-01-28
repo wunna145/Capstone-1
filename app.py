@@ -53,7 +53,7 @@ def do_logout():
 
 @app.route('/')
 def homepage():
-    return render_template('maintenance.html')
+    return render_template('home-anon.html')
     
 @app.route('/heroes')
 def heroes():
